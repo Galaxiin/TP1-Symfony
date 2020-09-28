@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-3">
+    <div class="jumbotron">
+            <h1 class="display-3">Bonjour toi !</h1>
+            <p class="lead">Bienvenue sur le site où tu pourras gérer une liste d'articles que tu as toi-même créé.</p>
+            <p class="lead">Créer ! Modifier ! Supprimer !</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{path('listearticle')}}" role="button">Trouve ton bonheur !</a>
+            </p>
+    </div>
+</div>
+{% endblock %}

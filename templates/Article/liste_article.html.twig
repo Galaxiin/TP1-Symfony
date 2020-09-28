@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div>
+        <h1 class="text-center mb-4">Liste des articles</h1>
+    </div>
+
+    <div class="row">        
+        {% for article in liste %}
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <h3 class="card-header">{{article.libelle}}</h3>
+                    <img style="height: 100%; width: 100%; display: block;" src="{{article.image}}" alt="Card image">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Prix : {{article.prix}} &euro;</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="{{path('fichearticle',{'id':article.id})}}" class="card-link">Voir détail</a>
+                    </div>
+                </div>                
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}
