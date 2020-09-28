@@ -2,7 +2,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -22,7 +25,7 @@ class HomeController extends AbstractController {
     /**
      * Liste des articles
      *
-     * @Route("/articles", name = "listearticle")
+     * @Route("/article", name = "liste_article")
      */
     public function liste_article(ArticleRepository $repo){
 
@@ -36,16 +39,49 @@ class HomeController extends AbstractController {
     }
 
     /**
+     * formulaire de création d'article
+     *
+     * @Route("/article/creation", name = "creation_article")
+     */
+    public function creation_article(Request $request, EntityManagerInterface $manager){
+        $article = new Article();
+
+        $form = $this->createForm(ArticleType::class, $article);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach($article->getImages() as $images){
+                $images->setArticle($article);
+                $manager->persist($images);
+            }
+            
+            $manager->persist($article);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "L'annonce {$article->getLibelle()} a bien été enregistré"
+            );            
+        }
+
+        return $this->render(
+            'Article/creation_article.html.twig',
+            ['form' => $form->createView()]
+        );
+    }
+
+    /**
      * Fiche détaillé d'un article
      *
-     * @Route("/article/{id}", name = "fichearticle")
+     * @Route("/article/{id}", name = "fiche_article")
      */
     public function fichearticle(Article $article){
 
         // $article = $repo->findById($id);
 
         return $this->render(
-            'Article/article.html.twig',
+            'Article/fiche_article.html.twig',
             ['article' => $article]
         );
     }
