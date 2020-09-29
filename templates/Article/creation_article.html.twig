@@ -2,11 +2,11 @@
 
 {% block title %}Création d'un article{% endblock %}
 
-{% form_theme form _self %}
+{# {% form_theme form _self %} #}
 
 {% block body %}
 
-<div class="container mt-5">
+<div class="container mt-4">
     <h1 class="text-center mb-5">Création d'un article</h1>
 
     {{form_start(form)}}
@@ -57,30 +57,28 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>    
+        $("#ajout-image").click(function(){
+            //recupere le numero des futurs champs 
+            const index = +$('#widgets-counter').val();
 
-<script>    
-    $("#ajout-image").click(function(){
-        //recupere le numero des futurs champs 
-        const index = +$('#widgets-counter').val();
+            //recupere le prototype des entrees
+            const tmpl = $('#article_images').data('prototype').replace(/__name__/g, index);
 
-        //recupere le prototype des entrees
-        const tmpl = $('#article_images').data('prototype').replace(/__name__/g, index);
+            //injecte le code au sein de la div
+            $('#article_images').append(tmpl);
 
-        //injecte le code au sein de la div
-        $('#article_images').append(tmpl);
+            $('widgets-counter'.val(index+1))
 
-        $('widgets-counter'.val(index+1))
+            //gere le button supprimer
+            handleDeleteButtons();
+        });
 
-        //gere le button supprimer
-        handleDeleteButtons();
-    });
-
-    function handleDeleteButtons(){
-        $('button[data-action="delete"]').click(function(){
-            const target = this.dataset.target;
-            $(target).remove();
-        })
-    }
-</script>
-
+        function handleDeleteButtons(){
+            $('button[data-action="delete"]').click(function(){
+                const target = this.dataset.target;
+                $(target).remove();
+            })
+        }
+    </script>
 {% endblock %}

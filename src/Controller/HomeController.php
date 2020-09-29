@@ -42,6 +42,8 @@ class HomeController extends AbstractController {
      * formulaire de création d'article
      *
      * @Route("/article/creation", name = "creation_article")
+     * 
+     * @return Response
      */
     public function creation_article(Request $request, EntityManagerInterface $manager){
         $article = new Article();

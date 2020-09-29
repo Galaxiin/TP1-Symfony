@@ -17,17 +17,17 @@ class ArticleType extends AbstractType
     private function getConfig($label, $placeholder){
         return[
             'label' => $label,
-        'attr' => ['placleholder' => $placeholder]
+        'attr' => ['placeholder' => $placeholder, 'class' => 'form-control']
         ];
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle', TextType::class, $this->getConfig("Libelle de l'article","mettre le libelle de l'article"))
-            ->add('description', TextareaType::class, $this->getConfig("Description de l'article","mettre la description de l'article"))
-            ->add('prix', MoneyType::class, $this->getConfig("Prix de l'article","mettre le prix de l'article"))
-            ->add('image', TextType::class, $this->getConfig("Image de l'article","mettre l'image de l'article"))
+            ->add('libelle', TextType::class, $this->getConfig("Libelle de l'article","Mettre le libelle de l'article"))
+            ->add('description', TextareaType::class, $this->getConfig("Description de l'article","Mettre la description de l'article"))
+            ->add('prix', MoneyType::class, $this->getConfig("Prix de l'article","Mettre le prix de l'article"))
+            ->add('image', TextType::class, $this->getConfig("Image de l'article","Mettre l'image de l'article"))
             ->add('images', CollectionType::class, ['entry_type' => ImageType::class, 'allow_add' => true])
         ;
     }
