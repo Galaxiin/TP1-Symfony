@@ -2,7 +2,7 @@
 
 {% block title %}Création d'un article{% endblock %}
 
-{# {% form_theme form _self %} #}
+{% form_theme form _self %}
 
 {% block body %}
 
@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block _article_images_widget %}
-    <p>Ajouter ici tes propres images</p>
+    <p>Ajoute ici tes propres images</p>
 
     {{form_widget(form)}}
 
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="col-2">
-                <button type="button" data-action="delete" data-target="#black_{{id}}" class="btn btn-danger">X</button>
+                <button type="button" data-action="delete" data-target="#block_{{id}}" class="btn btn-danger">X</button>
             </div>
         </div>
     </div>
@@ -60,7 +60,8 @@
     <script>    
         $("#ajout-image").click(function(){
             //recupere le numero des futurs champs 
-            const index = +$('#widgets-counter').val();
+            //const index = +$('#widgets-counter').val();
+            const index = $('#article_images div.form-group').length();
 
             //recupere le prototype des entrees
             const tmpl = $('#article_images').data('prototype').replace(/__name__/g, index);
@@ -68,17 +69,17 @@
             //injecte le code au sein de la div
             $('#article_images').append(tmpl);
 
-            $('widgets-counter'.val(index+1))
+            //$('widgets-counter'.val(index+1))
 
             //gere le button supprimer
-            handleDeleteButtons();
+            //handleDeleteButtons();
         });
 
-        function handleDeleteButtons(){
+        {# function handleDeleteButtons(){
             $('button[data-action="delete"]').click(function(){
                 const target = this.dataset.target;
                 $(target).remove();
             })
-        }
+        } #}
     </script>
 {% endblock %}

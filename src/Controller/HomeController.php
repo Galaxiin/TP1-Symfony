@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
@@ -47,6 +48,11 @@ class HomeController extends AbstractController {
      */
     public function creation_article(Request $request, EntityManagerInterface $manager){
         $article = new Article();
+
+        $image = new Image();
+        $image->setUrl('http://placehold.it/80x80');
+
+        $article->addImage($image);
 
         $form = $this->createForm(ArticleType::class, $article);
 
