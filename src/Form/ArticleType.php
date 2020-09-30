@@ -28,7 +28,7 @@ class ArticleType extends AbstractType
             ->add('description', TextareaType::class, $this->getConfig("Description de l'article","Mettre la description de l'article"))
             ->add('prix', MoneyType::class, $this->getConfig("Prix de l'article","Mettre le prix de l'article"))
             ->add('image', TextType::class, $this->getConfig("Image de l'article","Mettre l'image de l'article"))
-            ->add('images', CollectionType::class, ['entry_type' => ImageType::class, 'allow_add' => true])
+            ->add('images', CollectionType::class, ['entry_type' => ImageType::class, 'allow_add' => true, 'allow_delete' => true])
         ;
     }
 

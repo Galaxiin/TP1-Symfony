@@ -1,27 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création d'un article{% endblock %}
+{% block title %}Edition d'un article{% endblock %}
 
 {% form_theme form _self %}
 
 {% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-5">Edition de l'article {{article.libelle}}</h1>
 
-<div class="container mt-4">
-    <h1 class="text-center mb-5">Création d'un article</h1>
+        {{form_start(form)}}
 
-    {{form_start(form)}}
+        {{form_widget(form)}}
 
-    {{form_widget(form)}}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
 
-    <button type="submit" class="btn btn-primary">Créer le nouvel article</button>
-
-    {{form_end(form)}}
-</div>
-
+        {{form_end(form)}}
+    </div>
 {% endblock %}
 
 {% block _article_images_widget %}
-    <p>Ajouter ici tes propres images</p>
+    <p>Change ici tes images</p>
 
     {{form_widget(form)}}
 
@@ -80,6 +78,14 @@
                 $(target).remove();
             })
         }
+
+        function updatecounter(){
+            const counter = +$('#article_images div.form-group').length;
+
+            $('#widget-counter').val(counter);
+        }
+
+        updatecounter();
 
         handleDeleteButtons();
     </script>

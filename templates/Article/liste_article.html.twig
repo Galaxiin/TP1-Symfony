@@ -19,8 +19,9 @@
                             <li class="list-group-item">Prix : {{article.prix}} &euro;</li>
                         </ul>
                     </div>
-                    <div class="card-footer text-muted">
-                        <a href="{{path('fiche_article',{'id':article.id})}}" class="card-link">Voir détail</a>
+                    <div class="card-footer text-muted text-center">
+                        <a href="{{path('fiche_article',{'libelle':article.libelle})}}" class="card-link">Voir détail</a>
+                        <a href="{{path('edition_article',{'libelle':article.libelle})}}" class="card-link">Modifier</a>
                     </div>
                 </div>                
             </div>

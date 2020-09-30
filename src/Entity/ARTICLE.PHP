@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert; // contraintes de champs
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @UniqueEntity(fields={"libelle","description"}) Eviter les doublons !
  */
 class Article
 {
@@ -21,26 +24,31 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\Length(min=10, minMessage="Votre libelle est trop court !")
      */
     private $libelle;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\
      */
     private $prix;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(min=100, minMessage="Elle est doit plus longue")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url()
      */
     private $image;
 
     /**
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="article_id", orphanRemoval=true)
+     * @Assert\Valid()
      */
     private $images;
 
