@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Article;
 use Doctrine\Persistence\ObjectManager;
@@ -21,6 +22,23 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create("fr-FR");
+
+        $adminRole = new Role();
+        $adminRole -> setTitre("ROLE_ADMIN");
+        $manager->persist($adminRole);
+
+        $adminUser = new User();
+
+            $hash = $this->encoder->encodePassword($adminUser, 'motdepasse');
+
+            $adminUser -> setPrenom("Antonin")
+                        -> setNom("Raizer")
+                        -> setAvatar("https://www.sciencesetavenir.fr/assets/img/2020/07/30/cover-r4x3w1000-5f22d57470197-owl-50267-1920.jpg")
+                        -> setHash($hash) //password
+                        -> setIntroduction($faker->paragraph(2))
+                        -> setAdresseMail("antonin@symfony.com")
+                        -> addUserRole($adminRole);
+            $manager->persist($adminUser);
 
         //Pour les users
         for ($i=1; $i < 11; $i++) {

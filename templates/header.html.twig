@@ -20,7 +20,8 @@
             {% if app.user %}
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="compteDropdownLink">
-                        <img src="{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.FullName}}"> {{app.user.FullName}} {# Rajouter du style si trop gros #}
+                        <img src="{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.FullName}}"> {# Rajouter du style si trop gros #}
+                        {{app.user.FullName}}
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-rigth" aria-labelledby="compteDropdownLink">

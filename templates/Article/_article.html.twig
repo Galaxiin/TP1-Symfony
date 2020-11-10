@@ -9,7 +9,11 @@
         </div>
         <div class="card-footer text-muted text-center">
             <a href="{{path('fiche_article',{'libelle':article.libelle})}}" class="card-link">Voir détail</a>
-            <a href="{{path('edition_article',{'libelle':article.libelle})}}" class="card-link">Modifier</a>
+
+            {% if app.user and app.user == article.auteur %}
+                <a href="{{path('edition_article',{'libelle':article.libelle})}}" class="btn btn-secondary">Modifier</a>  
+            {% endif %}
+            
         </div>
     </div>                
 </div>

@@ -7,11 +7,12 @@ use App\Form\UserType;
 use App\Entity\UpdatePassword;
 use App\Form\RegistrationType;
 use App\Form\PasswordUpdateType;
+use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -20,7 +21,7 @@ class UserController extends AbstractController
     /**
      * Permet d'afficher l'utilisateur
      * 
-     * @Route("/user/{id}/{nom}", name="compte_user")
+     * @Route("/user/{nom}", name="compte_user")
      * 
      * @return Response 
      */
@@ -32,7 +33,8 @@ class UserController extends AbstractController
     /**
      * Permet d'afficher l'utilisateur connecté
      * 
-     * @Route("/user", name="compte_myuser")
+     * @Route("/my-user", name="compte_myuser")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response 
      */
@@ -110,6 +112,7 @@ class UserController extends AbstractController
      * Formulaire de modification du profil
      *
      * @Route("/user/profil", name="compte_profil")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */
@@ -141,6 +144,7 @@ class UserController extends AbstractController
      * Permet de modifier le mpd
      * 
      * @route("/user/password-update", name="password_update")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */

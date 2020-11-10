@@ -2,3 +2,8 @@
     max-width: 50px;
     max-height: 50px;
 }
+
+.avatar-medium{
+    max-width: 200px;
+    max-height: 130px;
+}

@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Page non trouvée
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Oups la page que vous rechercez n'existe pas !</h1>
+        <p>Vous pouvez retournez voir les articles en vente</p>
+
+        <a class="btn btn-primary" href="{{path('liste_article')}}">Liste des articles</a>
+    </div>
+{% endblock %}

@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block _article_images_widget %}
-    <p>Ajoute ici tes propres images</p>
+    <p>Ajouter ici tes propres images</p>
 
     {{form_widget(form)}}
 
@@ -60,12 +60,7 @@
     <script>    
         $("#ajout-image").click(function(){
             //recupere le numero des futurs champs 
-<<<<<<< HEAD
             const index = +$('#widgets-counter').val(); //utilisation pour dejouer le bug de java
-=======
-            //const index = +$('#widgets-counter').val();
-            const index = $('#article_images div.form-group').length();
->>>>>>> 14829cf2c0a6b2bb01cb2590fd76948a8534e936
 
             //recupere le prototype des entrees
             const tmpl = $('#article_images').data('prototype').replace(/__name__/g, index);
@@ -73,23 +68,19 @@
             //injecte le code au sein de la div
             $('#article_images').append(tmpl);
 
-            //$('widgets-counter'.val(index+1))
+            $('widgets-counter'.val(index+1))
 
             //gere le button supprimer
-            //handleDeleteButtons();
+            handleDeleteButtons();
         });
 
-        {# function handleDeleteButtons(){
+        function handleDeleteButtons(){
             $('button[data-action="delete"]').click(function(){
                 const target = this.dataset.target;
                 $(target).remove();
             })
-<<<<<<< HEAD
         }
 
         handleDeleteButtons();
-=======
-        } #}
->>>>>>> 14829cf2c0a6b2bb01cb2590fd76948a8534e936
     </script>
 {% endblock %}
