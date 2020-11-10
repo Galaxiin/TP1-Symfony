@@ -1,0 +1,15 @@
+<div class="col-md-3">
+    <div class="card mb-3">
+        <h3 class="card-header">{{article.libelle}}</h3>
+        <img style="height: 100%; width: 100%; display: block;" src="{{article.image}}" alt="Card image">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Prix : {{article.prix}} &euro;</li>
+            </ul>
+        </div>
+        <div class="card-footer text-muted text-center">
+            <a href="{{path('fiche_article',{'libelle':article.libelle})}}" class="card-link">Voir détail</a>
+            <a href="{{path('edition_article',{'libelle':article.libelle})}}" class="card-link">Modifier</a>
+        </div>
+    </div>                
+</div>

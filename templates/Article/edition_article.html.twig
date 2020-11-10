@@ -1,27 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création d'un article{% endblock %}
+{% block title %}Edition d'un article{% endblock %}
 
 {% form_theme form _self %}
 
 {% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-5">Edition de l'article {{article.libelle}}</h1>
 
-<div class="container mt-4">
-    <h1 class="text-center mb-5">Création d'un article</h1>
+        {{form_start(form)}}
 
-    {{form_start(form)}}
+        {{form_widget(form)}}
 
-    {{form_widget(form)}}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
 
-    <button type="submit" class="btn btn-success">Créer le nouvel article</button>
-
-    {{form_end(form)}}
-</div>
-
+        {{form_end(form)}}
+    </div>
 {% endblock %}
 
 {% block _article_images_widget %}
-    <p>Ajoute ici tes propres images</p>
+    <p>Change ici tes images</p>
 
     {{form_widget(form)}}
 
@@ -60,12 +58,7 @@
     <script>    
         $("#ajout-image").click(function(){
             //recupere le numero des futurs champs 
-<<<<<<< HEAD
             const index = +$('#widgets-counter').val(); //utilisation pour dejouer le bug de java
-=======
-            //const index = +$('#widgets-counter').val();
-            const index = $('#article_images div.form-group').length();
->>>>>>> 14829cf2c0a6b2bb01cb2590fd76948a8534e936
 
             //recupere le prototype des entrees
             const tmpl = $('#article_images').data('prototype').replace(/__name__/g, index);
@@ -73,23 +66,27 @@
             //injecte le code au sein de la div
             $('#article_images').append(tmpl);
 
-            //$('widgets-counter'.val(index+1))
+            $('widgets-counter'.val(index+1))
 
             //gere le button supprimer
-            //handleDeleteButtons();
+            handleDeleteButtons();
         });
 
-        {# function handleDeleteButtons(){
+        function handleDeleteButtons(){
             $('button[data-action="delete"]').click(function(){
                 const target = this.dataset.target;
                 $(target).remove();
             })
-<<<<<<< HEAD
         }
 
+        function updatecounter(){
+            const counter = +$('#article_images div.form-group').length;
+
+            $('#widget-counter').val(counter);
+        }
+
+        updatecounter();
+
         handleDeleteButtons();
-=======
-        } #}
->>>>>>> 14829cf2c0a6b2bb01cb2590fd76948a8534e936
     </script>
 {% endblock %}
