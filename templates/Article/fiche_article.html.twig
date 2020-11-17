@@ -15,6 +15,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 {{article.description}}
+<<<<<<< HEAD
                 <br>
                 <div class="mt-3">
                     <a href="#" class="btn btn-secondary">Réserver</a>
@@ -26,6 +27,21 @@
                     onclick="return confirm(`Etes-vous sur de vouloir le supprimer ?`)">Supprimer</a>
                 {% endif %}
 
+=======
+                
+                <br>
+                {% if app.user and app.user == article.auteur %}
+                    <div class="mt-3">
+                        <a href="{{path('edition_article',{'libelle':article.libelle})}}" class="btn btn-secondary">Modifier</a>
+                        <a href="{{path('suppression_article',{'libelle':article.libelle})}}" class="btn btn-warning" 
+                        onclick="return confirm(`Etes-vous sur de vouloir le supprimer ?`)">Supprimer</a>
+                    </div>
+                {% else %}
+                    <div class="mt-3">
+                        <a href="#" class="btn btn-secondary">Acheter</a>
+                    </div>
+                {% endif %}    
+>>>>>>> 5b41b230dd23d9a86fa44ae7a04af61b7a1d831c
             </div>
             <div class="col">
                 <img style="height: 250px; width: 250px;" src="{{article.image}}" alt="">
@@ -35,7 +51,11 @@
         {% set a = article.auteur %}
             <div class="col-mr-2">
                 <a href="{{path('compte_user', {'id': a.id, 'nom': a.nom} )}}">
+<<<<<<< HEAD
                     <img style="height: 150px; width: 150px;" src="{{a.avatar}}" alt="">
+=======
+                    <img  class="avatar avatar-medium" src="{{a.avatar}}" alt="">
+>>>>>>> 5b41b230dd23d9a86fa44ae7a04af61b7a1d831c
                 </a>
             </div>
             <div class="col">

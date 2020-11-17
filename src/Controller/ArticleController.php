@@ -58,7 +58,13 @@ class ArticleController extends AbstractController {
             $this->addFlash(
                 'success',
                 "L'article {$article->getLibelle()} a bien été enregistré"
+<<<<<<< HEAD
             );            
+=======
+            );
+            
+            return $this->redirectToRoute('fiche_article', array('libelle'=> $article->getLibelle()));
+>>>>>>> 5b41b230dd23d9a86fa44ae7a04af61b7a1d831c
         }
 
         return $this->render(
@@ -92,14 +98,23 @@ class ArticleController extends AbstractController {
             $this->addFlash(
                 'success',
                 "Les modifications ont bien étés enregistrés"
+<<<<<<< HEAD
             );            
+=======
+            );
+
+            return $this->redirectToRoute('fiche_article', array('libelle'=> $article->getLibelle()));
+>>>>>>> 5b41b230dd23d9a86fa44ae7a04af61b7a1d831c
         }
 
         return $this->render(
             'Article/edition_article.html.twig',[
                 'form' => $form->createView(),
                 'article' => $article
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b41b230dd23d9a86fa44ae7a04af61b7a1d831c
             ]
         );
     }
@@ -135,7 +150,11 @@ class ArticleController extends AbstractController {
             'success',
             "La suppresssion a bien été faite"
         );
+<<<<<<< HEAD
         return $this->redirectToRoute("article_index");
+=======
+        return $this->redirectToRoute("liste_article");
+>>>>>>> 5b41b230dd23d9a86fa44ae7a04af61b7a1d831c
     }
 }
 ?>

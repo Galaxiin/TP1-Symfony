@@ -4,6 +4,11 @@
 }
 
 .avatar-medium{
+<<<<<<< HEAD
     max-width: 100px;
     max-height: 100px;
+=======
+    max-width: 200px;
+    max-height: 130px;
+>>>>>>> 5b41b230dd23d9a86fa44ae7a04af61b7a1d831c
 }
