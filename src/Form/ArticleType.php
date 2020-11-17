@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Form\ImageType;
-use Symfony\Component\Form\AbstractType;
+use App\Form\ApplicationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -12,15 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class ArticleType extends AbstractType
+class ArticleType extends ApplicationType
 {
-    private function getConfig($label, $placeholder){
-        return[
-            'label' => $label,
-        'attr' => ['placeholder' => $placeholder, 'class' => 'form-control']
-        ];
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

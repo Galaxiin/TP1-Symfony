@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Page a accès refusé
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Vous ne pouvez pas accéder a cette page !</h1>
+        <p>Mais vous pouvez retournez voir les articles en vente</p>
+
+        <a class="btn btn-primary" href="{{path('liste_article')}}">Liste des articles</a>
+    </div>
+{% endblock %}

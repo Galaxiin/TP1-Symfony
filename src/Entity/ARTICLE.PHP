@@ -24,19 +24,18 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=100)
-     * @Assert\Length(min=10, minMessage="Votre libelle est trop court !")
+     * @Assert\Length(min=1, minMessage="Votre libelle est trop court !")
      */
     private $libelle;
 
     /**
      * @ORM\Column(type="float")
-     * @Assert\
      */
     private $prix;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(min=100, minMessage="Elle est doit plus longue")
+     * @Assert\Length(min=1, minMessage="Elle est doit plus longue")
      */
     private $description;
 
@@ -51,6 +50,12 @@ class Article
      * @Assert\Valid()
      */
     private $images;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
 
     public function __construct()
     {
@@ -137,6 +142,18 @@ class Article
                 $image->setArticleId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?User $auteur): self
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }
